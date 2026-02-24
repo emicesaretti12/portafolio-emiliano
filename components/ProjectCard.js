@@ -5,6 +5,7 @@ export const ProjectCard = (proyecto) => {
 
   return `
     <article class="bento-card tilt-card reveal">
+      <div class="glare"></div>
       <div class="card-content">
         <h3>${proyecto.nombre}</h3>
         <p>${proyecto.descripcion}</p>
@@ -13,7 +14,7 @@ export const ProjectCard = (proyecto) => {
         </div>
       </div>
       <a href="${proyecto.url}" target="_blank" class="card-link" rel="noopener noreferrer">
-        Explorar Código / Demo
+        Ver Proyecto
       </a>
     </article>
   `;

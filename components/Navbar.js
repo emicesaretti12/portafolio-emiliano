@@ -3,9 +3,10 @@ export const Navbar = () => {
     <nav class="navbar reveal">
       <div class="nav-brand">Emiliano.</div>
       <ul class="nav-links">
+        <li><a href="#about">CV</a></li>
         <li><a href="#web">Web</a></li>
         <li><a href="#software">Software</a></li>
-        <li><a href="#ciberseguridad">Ciberseguridad</a></li>
+        <li><a href="#ciberseguridad">Seguridad</a></li>
       </ul>
     </nav>
   `;

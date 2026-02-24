@@ -2,54 +2,57 @@ export const portfolioData = {
   web: {
     id: "web",
     titulo: "Desarrollo Web",
-    descripcion: "Arquitecturas frontend y backend escalables.",
-    color: "#06b6d4", // Cyan
+    descripcion: "Arquitecturas escalables y experiencias de usuario inmersivas.",
+    color: "#38bdf8", // Sky Blue
+    bgColor: "#041421", // Fondo ultra oscuro tintado de azul
     items: [
       {
         nombre: "PlenoMax",
         url: "https://plenomax.com.ar",
-        descripcion: "Plataforma e-commerce institucional para fábrica de pinturas. Optimizada para conversión.",
-        tecnologias: ["HTML", "CSS", "JS", "UI/UX"] 
-      },
-      {
-        nombre: "EliCeramica",
-        url: "https://eliceramica.com",
-        descripcion: "Sitio web corporativo y catálogo digital inmersivo para productos cerámicos.",
-        tecnologias: ["Frontend", "Performance", "Responsive"] 
+        descripcion: "Plataforma e-commerce institucional para fábrica de pinturas. Optimizada para rendimiento y conversión comercial.",
+        tecnologias: ["Vanilla JS", "CSS Grid", "Optimización UX"] 
       },
       {
         nombre: "Polar Chat",
         url: "#",
-        descripcion: "Interfaz de chat interactiva con diseño Dark/Ice y arquitectura basada en componentes.",
-        tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"]
+        descripcion: "Interfaz de chat interactiva con diseño Dark/Ice. Arquitectura sólida basada en componentes modulares.",
+        tecnologias: ["JavaScript", "Arquitectura CSS", "UI/UX"]
+      },
+      {
+        nombre: "Menú Digital Dinámico",
+        url: "#",
+        descripcion: "Sistema de menús digitales interactivos desarrollado para el sector gastronómico en Sierras Chicas.",
+        tecnologias: ["Frontend", "Gestión de Datos", "Mobile First"]
       }
     ]
   },
   software: {
     id: "software",
     titulo: "Ingeniería de Software",
-    descripcion: "Sistemas corporativos y automatización de procesos.",
+    descripcion: "Sistemas corporativos robustos y automatización de procesos lógicos.",
     color: "#a855f7", // Purple
+    bgColor: "#140524", // Fondo ultra oscuro tintado de violeta
     items: [
       {
         nombre: "Sistema LE&CO",
         url: "#",
-        descripcion: "Plataforma integral para el registro, control y auditoría automatizada de ingresos de personal.",
-        tecnologias: ["Python", "Bases de Datos", "Automatización"]
+        descripcion: "Software integral para el registro, control automatizado y auditoría de ingresos y salidas de personal corporativo.",
+        tecnologias: ["Python", "Bases de Datos", "Automatización", "Sistemas"]
       }
     ]
   },
   ciberseguridad: {
     id: "ciberseguridad",
     titulo: "Ciberseguridad",
-    descripcion: "Análisis, OSINT y auditorías ofensivas.",
+    descripcion: "Análisis de vulnerabilidades, OSINT y desarrollo de auditorías ofensivas.",
     color: "#10b981", // Emerald Green
+    bgColor: "#021c13", // Fondo ultra oscuro tintado de verde
     items: [
       {
         nombre: "OSINT Geolocation (PoC)",
         url: "#",
-        descripcion: "Prueba de concepto. Desarrollo de herramienta para obtener ubicaciones físicas mediante ingeniería social avanzada.",
-        tecnologias: ["Python", "Ingeniería Social", "Networking"]
+        descripcion: "Prueba de concepto técnica. Herramienta desarrollada para obtener ubicaciones físicas precisas mediante técnicas de ingeniería social.",
+        tecnologias: ["Python", "Ingeniería Social", "Networking", "OSINT"]
       }
     ]
   }
