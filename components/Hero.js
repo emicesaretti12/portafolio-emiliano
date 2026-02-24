@@ -1,10 +1,8 @@
 export const Hero = () => {
   return `
-    <section class="hero">
-      <h1>Hola, soy Emiliano</h1>
-      <h2 class="gradient-text">Ingeniería en Sistemas (UTN FRC) & Full Stack Developer</h2>
-      <p>Diseño y desarrollo soluciones tecnológicas integrales. Desde interfaces web escalables y sistemas de gestión corporativa, hasta auditorías y herramientas de ciberseguridad.</p>
-      <a href="#web" class="cta-button">Explorar Proyectos</a>
+    <section class="hero reveal">
+      <h1>Ingeniero en Sistemas <br> & <span class="gradient-text">Full Stack Developer</span></h1>
+      <p>Construyendo el puente entre el diseño de interfaces inmersivas y arquitecturas de software robustas. Estudiante avanzado UTN FRC.</p>
     </section>
   `;
 };

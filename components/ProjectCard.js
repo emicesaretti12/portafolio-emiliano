@@ -1,11 +1,10 @@
 export const ProjectCard = (proyecto) => {
-  // Generamos los spans para cada tecnología
   const techTags = proyecto.tecnologias
     .map(tech => `<span class="tech-tag">${tech}</span>`)
     .join('');
 
   return `
-    <article class="bento-card">
+    <article class="bento-card tilt-card reveal">
       <div class="card-content">
         <h3>${proyecto.nombre}</h3>
         <p>${proyecto.descripcion}</p>
@@ -14,7 +13,7 @@ export const ProjectCard = (proyecto) => {
         </div>
       </div>
       <a href="${proyecto.url}" target="_blank" class="card-link" rel="noopener noreferrer">
-        Ver Proyecto &rarr;
+        Explorar Código / Demo
       </a>
     </article>
   `;

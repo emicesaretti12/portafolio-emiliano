@@ -1,6 +1,6 @@
 export const Navbar = () => {
   return `
-    <nav class="navbar">
+    <nav class="navbar reveal">
       <div class="nav-brand">Emiliano.</div>
       <ul class="nav-links">
         <li><a href="#web">Web</a></li>

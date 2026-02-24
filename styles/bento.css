@@ -1,84 +1,127 @@
 .category-section {
-  padding: 4rem 0;
+  padding: 6rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+
+/* Efecto de luz difusa detrás de cada categoría */
+.category-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--theme-color), transparent);
+  opacity: 0.5;
 }
 
 .category-header {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
 .category-header h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+  color: var(--theme-color);
+  text-shadow: 0 0 30px var(--theme-color);
 }
 
-.category-header p {
-  color: var(--text-secondary);
-}
-
-/* Bento Grid System */
+/* Bento Grid */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  perspective: 1000px; /* Crucial para el efecto 3D */
 }
 
+/* La tarjeta base (Glassmorphism + 3D prep) */
 .bento-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+}
+
+/* Resplandor al hacer hover */
+.bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  box-shadow: 0 0 50px var(--theme-color);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.bento-card:hover::after {
+  opacity: 0.15;
 }
 
 .bento-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 20px var(--accent-glow);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* Elementos internos de la tarjeta flotando (Parallax) */
+.card-content {
+  transform: translateZ(30px); /* Hace que el texto resalte hacia adelante */
 }
 
 .card-content h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
+  color: #fff;
 }
 
 .card-content p {
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  margin-bottom: 2rem;
 }
 
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin-bottom: 2rem;
+  transform: translateZ(20px);
 }
 
 .tech-tag {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .card-link {
-  color: var(--accent-color);
+  transform: translateZ(40px);
+  align-self: flex-start;
+  padding: 0.8rem 1.5rem;
+  background: var(--theme-color);
+  color: #000;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  margin-top: auto;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card-link:hover {
-  text-decoration: underline;
+  transform: translateZ(40px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
