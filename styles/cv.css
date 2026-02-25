@@ -1,141 +1,124 @@
+/* --- CV INTERACTIVO SENIOR --- */
 .cv-container {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 4rem 2rem 8rem;
+  padding: 6rem 2rem 10rem;
 }
 
 .cv-header {
   text-align: center;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
 }
 
 .cv-header h1 {
-  font-size: 4rem;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: #fff;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, #60a5fa, #c084fc);
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
-/* Timeline System */
+.section-title {
+  font-size: 2rem;
+  color: #fff;
+  margin: 6rem 0 4rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: -1px;
+}
+
+/* Timeline Style Vercel/Apple */
 .timeline {
   position: relative;
-  padding-left: 3rem;
+  padding-left: 2.5rem;
 }
 
-/* La línea vertical que se dibuja */
 .timeline::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
-  width: 2px;
+  width: 1px;
   height: 100%;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .timeline-progress {
   position: absolute;
-  left: 0;
+  left: -1px; /* Para centrar la luz sobre la línea */
   top: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, #3b82f6, #a855f7);
-  box-shadow: 0 0 15px #8b5cf6;
-  transition: height 0.1s ease;
+  width: 3px;
+  background: linear-gradient(to bottom, #38bdf8, #a855f7);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+  transition: height 0.1s linear; /* Linear para que siga exacto al scroll */
   z-index: 1;
 }
 
-/* Los items de la línea de tiempo */
 .timeline-item {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   opacity: 0;
-  transform: translateX(30px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(30px);
+  /* Usamos la curva Premium */
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timeline-item.active {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
-/* El punto brillante en la línea */
 .timeline-dot {
   position: absolute;
-  left: -3.4rem;
-  top: 0;
-  width: 16px;
-  height: 16px;
+  left: -2.85rem;
+  top: 5px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #050505;
-  border: 2px solid #a1a1aa;
+  border: 2px solid #52525b;
   z-index: 2;
-  transition: all 0.5s ease;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Cuando el item está activo, el punto se ilumina */
 .timeline-item.active .timeline-dot {
   border-color: #a855f7;
   background: #a855f7;
-  box-shadow: 0 0 20px #a855f7;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+  transform: scale(1.2);
 }
 
-/* Contenido de la tarjeta del CV */
+/* Contenido de la Tarjeta */
 .timeline-content {
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.timeline-content::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.timeline-content:hover::before {
-  transform: translateX(100%);
+  padding-bottom: 1rem;
 }
 
 .timeline-date {
-  color: #a855f7;
-  font-weight: 600;
+  font-family: monospace;
+  color: #a1a1aa;
   font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-  padding: 0.3rem 1rem;
-  background: rgba(168, 85, 247, 0.1);
-  border-radius: 50px;
+  margin-bottom: 1rem;
+  display: block;
+  letter-spacing: 1px;
 }
 
 .timeline-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #fff;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
 .timeline-subtitle {
-  color: #a1a1aa;
+  color: #38bdf8;
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: 500;
 }
 
 .timeline-desc {
   color: #d4d4d8;
-  line-height: 1.7;
-}
-
-.section-title {
-  font-size: 2rem;
-  color: #fff;
-  margin: 5rem 0 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.8;
+  font-size: 1.05rem;
 }

@@ -1,35 +1,60 @@
 export const About = () => {
   return `
-    <section id="about" class="about-section reveal section-observer" data-bg="#050505">
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 style="font-size: 3rem; margin-bottom: 1rem;">Sobre Mí</h2>
-          <p style="font-size: 1.2rem; color: #d4d4d8; margin-bottom: 2rem;">
-            Resolviendo problemas complejos a través de lógica estructurada y código limpio. Buscando constantemente el punto de encuentro entre el rendimiento del software y la experiencia del usuario.
-          </p>
-          <a href="./cv.html" class="cta-button cv-button hover-lift">
-            Ver Currículum Interactivo &rarr;
-          </a>
-        </div>
-        
-        <div class="terminal-window hover-lift">
-          <div class="terminal-header">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <div class="terminal-title">emiliano@portfolio: ~</div>
-          </div>
-          <div class="terminal-body">
-            <p><span class="prompt">~/skills $</span> cat perfil.txt</p>
-            <p class="terminal-output text-glow">
-              > Estudiante de Ingeniería en Sistemas (UTN FRC)<br>
-              > Estudiante de Ciencias de la Computación (Siglo 21)<br>
-              > Desarrollador Full Stack<br>
-              > Apasionado por la Ciberseguridad y automatización<br>
+    <section id="about" class="about-section section-observer" data-bg="#050505">
+      <div class="category-header reveal">
+        <h2>Detrás del Código</h2>
+        <p>Lógica estructural combinada con diseño inmersivo.</p>
+      </div>
+
+      <div class="about-bento-grid">
+        <div class="bento-card hover-lift reveal delay-1 bio-card">
+          <div class="card-content">
+            <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #fff;">Soy Emiliano.</h3>
+            <p style="font-size: 1.15rem; color: #d4d4d8; line-height: 1.8; margin-bottom: 2rem;">
+              Desarrollador Full Stack con un enfoque obsesivo en la arquitectura limpia y el rendimiento. Mi formación académica me permite abordar los desafíos no solo como programador, sino con la mentalidad analítica de un ingeniero.
             </p>
-            <p><span class="prompt">~/status $</span> echo $CURRENT_GOAL</p>
-            <p class="terminal-output text-glow">> Buscando rol como Full Stack Developer / Pasantía.</p>
-            <p><span class="prompt blink">_</span></p>
+            <div class="about-actions">
+              <a href="./assets/CV_Emiliano.pdf" download="CV_Emiliano_FullStack.pdf" class="btn-primary hover-lift">
+                Descargar PDF
+              </a>
+              <a href="./cv.html" class="btn-secondary hover-lift interactive-link">
+                Ver CV Interactivo &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card hover-lift reveal delay-2 edu-card">
+          <div class="card-content">
+            <h3 style="color: #fff; margin-bottom: 1.5rem;">Academia</h3>
+            <div class="edu-item">
+              <span class="edu-dot" style="background: #3b82f6;"></span>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem;">Ingeniería en Sistemas</h4>
+                <p style="color: #a1a1aa; font-size: 0.9rem;">UTN FRC</p>
+              </div>
+            </div>
+            <div class="edu-item" style="margin-top: 1.5rem;">
+              <span class="edu-dot" style="background: #a855f7;"></span>
+              <div>
+                <h4 style="color: #fff; font-size: 1.1rem;">Ciencias de la Computación</h4>
+                <p style="color: #a1a1aa; font-size: 0.9rem;">Universidad Siglo 21</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card hover-lift reveal delay-3 tech-card">
+          <div class="card-content">
+            <h3 style="color: #fff; margin-bottom: 1.5rem;">Core Stack</h3>
+            <div class="skills-container">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Vanilla JS</span>
+              <span class="skill-pill">CSS Grid</span>
+              <span class="skill-pill">Arquitectura Backend</span>
+              <span class="skill-pill">Bases de Datos</span>
+              <span class="skill-pill">Ciberseguridad (OSINT)</span>
+            </div>
           </div>
         </div>
       </div>
