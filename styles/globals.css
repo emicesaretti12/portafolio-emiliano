@@ -15,6 +15,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Custom Scrollbar estilo Senior */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050505; 
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46; 
+}
+
 body {
   font-family: var(--font-main);
   color: var(--text-primary);
@@ -23,12 +38,11 @@ body {
   background-color: #050505;
 }
 
-/* Transición dinámica de fondo al hacer scroll */
 .dynamic-background {
   position: fixed;
   inset: 0;
   background-color: #050505;
-  transition: background-color 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: background-color 1.5s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: -2;
 }
 
@@ -43,19 +57,19 @@ body {
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.3;
-  animation: float 20s infinite ease-in-out alternate;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: float 25s infinite ease-in-out alternate;
   mix-blend-mode: screen;
 }
 
-.orb-1 { width: 40vw; height: 40vw; background: #3b82f6; top: -10%; left: -10%; animation-delay: 0s; }
-.orb-2 { width: 35vw; height: 35vw; background: #8b5cf6; bottom: -10%; right: -10%; animation-delay: -5s; }
-.orb-3 { width: 30vw; height: 30vw; background: #10b981; top: 40%; left: 40%; animation-delay: -10s; }
+.orb-1 { width: 45vw; height: 45vw; background: #3b82f6; top: -15%; left: -10%; }
+.orb-2 { width: 40vw; height: 40vw; background: #8b5cf6; bottom: -10%; right: -10%; animation-delay: -5s; }
+.orb-3 { width: 35vw; height: 35vw; background: #10b981; top: 40%; left: 40%; animation-delay: -10s; }
 
 @keyframes float {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(5%, 10%) scale(1.1); }
+  100% { transform: translate(3%, 8%) scale(1.05); }
 }
 
 .container {
@@ -85,19 +99,39 @@ body {
   font-size: 1.5rem;
   letter-spacing: -1px;
   color: #fff;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
 }
 
-.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-brand:hover {
+  text-shadow: 0 0 15px rgba(255,255,255,0.5);
+}
+
+.nav-links { list-style: none; display: flex; gap: 2.5rem; }
 .nav-links a {
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  position: relative;
 }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
 .nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
 
 .hero {
   min-height: 90vh;
@@ -113,6 +147,8 @@ body {
   line-height: 1.1;
   letter-spacing: -2px;
   margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s forwards 0.2s;
 }
 
 .gradient-text {
@@ -121,52 +157,76 @@ body {
   color: transparent;
 }
 
-/* Sección CV / Sobre Mí */
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  max-width: 650px;
+  opacity: 0;
+  animation: fadeUp 1s forwards 0.5s;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CV Section */
 .about-section {
-  padding: 6rem 0;
+  padding: 8rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 5rem;
   align-items: center;
 }
 
 .about-text h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 1.5rem;
   letter-spacing: -1px;
+  color: #fff;
 }
 
 .about-text p {
   color: var(--text-secondary);
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
+  line-height: 1.8;
 }
 
 .skills-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.8rem;
   margin-top: 2rem;
 }
 
 .skill-pill {
   padding: 0.6rem 1.2rem;
-  border-radius: 50px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.03);
   font-weight: 600;
-  font-size: 0.9rem;
-  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
+.skill-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animaciones Reveal Genéricas */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.active {
   opacity: 1;
@@ -174,6 +234,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .about-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .nav-links { display: none; }
 }

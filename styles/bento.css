@@ -7,92 +7,102 @@
 .category-header {
   margin-bottom: 4rem;
   position: relative;
-  display: inline-block;
 }
 
 .category-header h2 {
   font-size: 3.5rem;
   letter-spacing: -1.5px;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .category-header p {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  perspective: 1500px;
+  perspective: 2000px; /* Profundidad aumentada para que el 3D sea más sutil */
 }
 
+/* Tarjeta Base */
 .bento-card {
-  background: rgba(20, 20, 20, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
+  background: rgba(15, 15, 15, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transform-style: preserve-3d;
   position: relative;
   z-index: 1;
-  min-height: 380px;
-  overflow: hidden; /* Mantiene el brillo dentro de la tarjeta */
+  min-height: 400px;
+  overflow: hidden;
 }
 
-/* Capa dinámica de reflejo de luz (Glare) */
+/* --- ESTILO 1: 3D Suave (Solo para Web) --- */
+.tilt-card {
+  transform-style: preserve-3d;
+}
+
 .glare {
   position: absolute;
   inset: 0;
-  border-radius: 24px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
   z-index: 2;
-  transform: translateZ(1px); /* Asegura que el brillo esté sobre el fondo pero bajo el texto */
+  transform: translateZ(1px);
+}
+.tilt-card:hover .glare { opacity: 1; }
+
+/* --- ESTILO 2: Elevación Elegante (Para Software y Ciberseguridad) --- */
+.hover-lift {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-.bento-card:hover .glare {
-  opacity: 1;
+.hover-lift:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px var(--theme-color-glow);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-.bento-card::before {
+.hover-lift::after {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 24px;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
+.hover-lift:hover::after { opacity: 1; }
 
+/* Contenido interno */
 .card-content {
-  transform: translateZ(50px);
   position: relative;
   z-index: 3;
 }
+.tilt-card .card-content { transform: translateZ(40px); }
 
 .card-content h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
   color: #fff;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  letter-spacing: -0.5px;
 }
 
 .card-content p {
   color: #d4d4d8;
   margin-bottom: 2rem;
   font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 .tech-stack {
@@ -100,35 +110,38 @@
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 2rem;
-  transform: translateZ(30px);
 }
+.tilt-card .tech-stack { transform: translateZ(25px); }
 
 .tech-tag {
   background: rgba(0, 0, 0, 0.4);
   color: var(--theme-color);
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card-link {
-  transform: translateZ(40px);
   align-self: flex-start;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   background: #fff;
   color: #000;
   text-decoration: none;
   font-weight: 700;
+  font-size: 0.95rem;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   z-index: 3;
 }
+.tilt-card .card-link { transform: translateZ(35px); }
 
 .card-link:hover {
   background: var(--theme-color);
   color: #fff;
-  box-shadow: 0 0 20px var(--theme-color);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+.tilt-card .card-link:hover { transform: translateZ(35px) scale(1.05); }

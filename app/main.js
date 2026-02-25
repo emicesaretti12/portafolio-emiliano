@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </main>
   `;
 
-  // 2. EFECTO 3D TILT + DINAMIC GLARE
+  // 2. EFECTO 3D TILT SUAVIZADO (Solo para Web)
   const tiltCards = document.querySelectorAll('.tilt-card');
   
   tiltCards.forEach(card => {
@@ -37,24 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      // Rotación 3D (Física)
-      const rotateX = ((y - centerY) / centerY) * -12; 
-      const rotateY = ((x - centerX) / centerX) * 12;
+      // Matemáticas Suavizadas (Nivel Senior). Multiplicador bajo (4 en vez de 12)
+      const rotateX = ((y - centerY) / centerY) * -4; 
+      const rotateY = ((x - centerX) / centerX) * 4;
       
-      card.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.transform = `perspective(2000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
 
-      // Cálculo del brillo interactivo (Iluminación)
-      // Mueve el centro del gradiente radial basado en la posición del ratón
       if (glare) {
         const percentageX = (x / rect.width) * 100;
         const percentageY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(255,255,255,0.15) 0%, transparent 60%)`;
+        glare.style.background = `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
       }
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      card.style.transition = 'transform 0.5s ease';
+      card.style.transform = `perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      card.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
       if (glare) glare.style.opacity = '0';
     });
 
@@ -64,28 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. BACKGROUND COLOR CHANGE ON SCROLL
+  // 3. COLOR DE FONDO DINÁMICO
   const sections = document.querySelectorAll('.section-observer');
-  
-  const bgObserverOptions = {
-    threshold: 0.4 // Se activa cuando el 40% de la sección está en pantalla
-  };
+  const bgObserverOptions = { threshold: 0.35 };
 
   const bgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Obtiene el color de fondo definido en el data-attribute
         const newColor = entry.target.getAttribute('data-bg');
-        if (newColor) {
-          dynamicBg.style.backgroundColor = newColor;
-        }
+        if (newColor) dynamicBg.style.backgroundColor = newColor;
       }
     });
   }, bgObserverOptions);
 
   sections.forEach(sec => bgObserver.observe(sec));
 
-  // 4. SCROLL REVEAL (Aparición suave de elementos)
+  // 4. ANIMACIONES REVEAL EN CASCADA
   const revealElements = document.querySelectorAll('.reveal');
   const revealOptions = {
     threshold: 0.1,
@@ -96,6 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
+        // Quitar el delay después de la animación para evitar lag en hover
+        setTimeout(() => {
+          entry.target.style.transitionDelay = '0s';
+        }, 1000);
         observer.unobserve(entry.target);
       }
     });
