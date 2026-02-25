@@ -1,58 +1,64 @@
 export const portfolioData = {
   web: {
     id: "web",
-    titulo: "Desarrollo Web",
-    descripcion: "Arquitecturas escalables y experiencias de usuario inmersivas.",
-    color: "#38bdf8", // Sky Blue
-    bgColor: "#041421", // Fondo ultra oscuro tintado de azul
+    titulo: "Desarrollo Full Stack",
+    descripcion: "Arquitecturas escalables, DevSecOps y optimización B2B/B2C.",
+    color: "#38bdf8", 
+    bgColor: "#041421", 
     items: [
       {
         nombre: "PlenoMax",
         url: "https://plenomax.com.ar",
-        descripcion: "Plataforma e-commerce institucional para fábrica de pinturas. Optimizada para rendimiento y conversión comercial.",
-        tecnologias: ["Vanilla JS", "CSS Grid", "Optimización UX"] 
+        descripcion: "Plataforma web corporativa end-to-end. Digitalización de procesos operativos y modelado de bases de datos relacionales.",
+        tecnologias: ["Full Stack", "PostgreSQL", "MySQL", "Arquitectura"] 
       },
       {
-        nombre: "Polar Chat",
+        nombre: "Menú Digital & BoxPoint",
         url: "#",
-        descripcion: "Interfaz de chat interactiva con diseño Dark/Ice. Arquitectura sólida basada en componentes modulares.",
-        tecnologias: ["JavaScript", "Arquitectura CSS", "UI/UX"]
+        descripcion: "SaaS para sector gastronómico con integración de API WhatsApp y sistema de reservas para complejo turístico.",
+        tecnologias: ["Frontend", "Backend", "API Integration"]
       },
       {
-        nombre: "Menú Digital Dinámico",
-        url: "#",
-        descripcion: "Sistema de menús digitales interactivos desarrollado para el sector gastronómico en Sierras Chicas.",
-        tecnologias: ["Frontend", "Gestión de Datos", "Mobile First"]
+        nombre: "Polar-Chat",
+        url: "https://github.com/emicesaretti12",
+        descripcion: "Chatbot interactivo. Arquitectura modular separando la lógica en componentes independientes y diseño Bento Grid.",
+        tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"]
       }
     ]
   },
   software: {
     id: "software",
-    titulo: "Ingeniería de Software",
-    descripcion: "Sistemas corporativos robustos y automatización de procesos lógicos.",
-    color: "#a855f7", // Purple
-    bgColor: "#140524", // Fondo ultra oscuro tintado de violeta
+    titulo: "Ingeniería & Automatización",
+    descripcion: "Scripts, gestión de datos y optimización de flujos operativos.",
+    color: "#a855f7", 
+    bgColor: "#140524", 
     items: [
       {
-        nombre: "Sistema LE&CO",
+        nombre: "Gestión de Gimnasios",
         url: "#",
-        descripcion: "Software integral para el registro, control automatizado y auditoría de ingresos y salidas de personal corporativo.",
-        tecnologias: ["Python", "Bases de Datos", "Automatización", "Sistemas"]
+        descripcion: "Backend robusto y panel administrativo. Automatización del flujo de registro reduciendo el tiempo operativo en un 50%.",
+        tecnologias: ["Python", "SQLite/MySQL", "Data Tuning"]
+      },
+      {
+        nombre: "Infraestructura UTN",
+        url: "#",
+        descripcion: "Administración de red, entornos virtualizados (Debian) y scripts en Bash/Python para mantenimiento de servicios.",
+        tecnologias: ["Linux", "Networking", "Bash", "VirtualBox"]
       }
     ]
   },
   ciberseguridad: {
     id: "ciberseguridad",
-    titulo: "Ciberseguridad",
-    descripcion: "Análisis de vulnerabilidades, OSINT y desarrollo de auditorías ofensivas.",
-    color: "#10b981", // Emerald Green
-    bgColor: "#021c13", // Fondo ultra oscuro tintado de verde
+    titulo: "DevSecOps & Ciberseguridad",
+    descripcion: "Auditorías, protección de datos y mitigación de vulnerabilidades.",
+    color: "#10b981", 
+    bgColor: "#021c13", 
     items: [
       {
-        nombre: "OSINT Geolocation (PoC)",
+        nombre: "Auditoría & Pentesting",
         url: "#",
-        descripcion: "Prueba de concepto técnica. Herramienta desarrollada para obtener ubicaciones físicas precisas mediante técnicas de ingeniería social.",
-        tecnologias: ["Python", "Ingeniería Social", "Networking", "OSINT"]
+        descripcion: "Implementación de protocolos de seguridad integrados, cifrado de datos y técnicas de mitigación e ingeniería social.",
+        tecnologias: ["Kali Linux", "Pentesting", "DevSecOps"]
       }
     ]
   }
