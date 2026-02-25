@@ -27,12 +27,13 @@
   letter-spacing: -1px;
 }
 
-/* Timeline Style Vercel/Apple */
+/* --- TIMELINE (Estilo Changelog) --- */
 .timeline {
   position: relative;
   padding-left: 2.5rem;
 }
 
+/* Línea base sutil */
 .timeline::before {
   content: '';
   position: absolute;
@@ -43,31 +44,35 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* Línea de luz que se dibuja con el scroll JS */
 .timeline-progress {
   position: absolute;
-  left: -1px; /* Para centrar la luz sobre la línea */
+  left: -1px; 
   top: 0;
   width: 3px;
   background: linear-gradient(to bottom, #38bdf8, #a855f7);
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-  transition: height 0.1s linear; /* Linear para que siga exacto al scroll */
+  transition: height 0.1s linear; 
   z-index: 1;
 }
 
+/* --- ANIMACIÓN 3D DE ENTRADA (Tarjetas del CV) --- */
 .timeline-item {
   position: relative;
   margin-bottom: 5rem;
   opacity: 0;
-  transform: translateY(30px);
-  /* Usamos la curva Premium */
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Efecto de despliegue desde el fondo hacia adelante */
+  transform: perspective(1000px) translateZ(-100px) translateY(50px) rotateX(20deg);
+  transform-origin: top center;
+  transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .timeline-item.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(1000px) translateZ(0) translateY(0) rotateX(0deg);
 }
 
+/* Punto indicador en la línea */
 .timeline-dot {
   position: absolute;
   left: -2.85rem;
@@ -81,7 +86,7 @@
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Cuando el item está activo, el punto se ilumina */
+/* Iluminación del punto cuando cruza el scroll */
 .timeline-item.active .timeline-dot {
   border-color: #a855f7;
   background: #a855f7;
@@ -89,7 +94,7 @@
   transform: scale(1.2);
 }
 
-/* Contenido de la Tarjeta */
+/* --- CONTENIDO DE LA TARJETA DEL CV --- */
 .timeline-content {
   padding-bottom: 1rem;
 }

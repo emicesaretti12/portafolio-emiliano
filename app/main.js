@@ -4,6 +4,41 @@ import { Hero } from '../components/Hero.js';
 import { About } from '../components/About.js';
 import { CategorySection } from '../components/CategorySection.js';
 
+// --- UTILIDAD: EFECTO HACKER SCRAMBLE ---
+const scrambleText = (element, finalText, duration = 1200) => {
+  const chars = '!<>-_\\/[]{}—=+*^?#________';
+  const frameRate = 30;
+  const totalFrames = (duration / 1000) * frameRate;
+  let frame = 0;
+
+  const originalFont = window.getComputedStyle(element).fontFamily;
+  const originalColor = window.getComputedStyle(element).color;
+
+  element.style.fontFamily = 'monospace';
+  element.style.color = '#3b82f6'; // Color azul tech durante la animación
+
+  const interval = setInterval(() => {
+    const progress = frame / totalFrames;
+    const scrambled = finalText
+      .split('')
+      .map((char, index) => {
+        if (index / finalText.length < progress) return char;
+        return chars[Math.floor(Math.random() * chars.length)];
+      })
+      .join('');
+
+    element.innerText = scrambled;
+    frame++;
+
+    if (frame > totalFrames) {
+      clearInterval(interval);
+      element.innerText = finalText;
+      element.style.fontFamily = originalFont;
+      element.style.color = originalColor;
+    }
+  }, 1000 / frameRate);
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const appContainer = document.getElementById('app');
   const dynamicBg = document.getElementById('dynamic-bg');
@@ -23,25 +58,46 @@ document.addEventListener('DOMContentLoaded', () => {
     </main>
   `;
 
-  // 2. PARALLAX SCROLL (Físicas Senior para el Hero)
-  const heroSection = document.getElementById('hero-section');
+  // 2. EFECTO SCRAMBLE EN EL HERO AL CARGAR
+  const heroTitleName = document.querySelector('.hero h1:nth-child(1)');
+  const heroTitleRole = document.querySelector('.hero h1:nth-child(2) .gradient-text');
   
-  window.addEventListener('scroll', () => {
-    // Usamos requestAnimationFrame implícito vía CSS transform para alto rendimiento
-    const scrollY = window.scrollY;
-    if (heroSection && scrollY < window.innerHeight) {
-      // Mueve el Hero hacia abajo a la mitad de la velocidad del scroll
-      heroSection.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
-      // Lo desvanece sutilmente
-      heroSection.style.opacity = 1 - (scrollY * 0.0015);
-    }
-  });
+  if (heroTitleName) {
+    setTimeout(() => scrambleText(heroTitleName, 'Emiliano.', 1500), 300);
+  }
+  if (heroTitleRole) {
+    setTimeout(() => scrambleText(heroTitleRole, 'Ingeniero en Sistemas', 1500), 1000);
+  }
 
-  // 3. EFECTO 3D TILT SUAVIZADO (Solo para Web)
-  const tiltCards = document.querySelectorAll('.tilt-card');
+  // 3. PARALLAX SCROLL OPTIMIZADO (60 FPS)
+  const heroSection = document.querySelector('.hero');
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    
+    if (!ticking && heroSection && scrollY < window.innerHeight) {
+      window.requestAnimationFrame(() => {
+        // Mueve el Hero más lento que el scroll normal para dar profundidad
+        heroSection.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
+        heroSection.style.opacity = 1 - (scrollY * 0.0015);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // 4. FÍSICAS 3D Y GLARE EN TARJETAS BENTO
+  const bentoCards = document.querySelectorAll('.bento-card');
   
-  tiltCards.forEach(card => {
-    const glare = card.querySelector('.glare');
+  bentoCards.forEach(card => {
+    // Si la tarjeta no tiene el div de glare (brillo), se lo inyectamos dinámicamente
+    let glare = card.querySelector('.glare');
+    if (!glare) {
+      glare = document.createElement('div');
+      glare.classList.add('glare');
+      card.insertBefore(glare, card.firstChild);
+    }
 
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -51,32 +107,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = ((y - centerY) / centerY) * -4; 
-      const rotateY = ((x - centerX) / centerX) * 4;
+      // Matemáticas muy sutiles para el cabeceo 3D (divisor alto = movimiento suave)
+      const rotateX = ((y - centerY) / centerY) * -3; 
+      const rotateY = ((x - centerX) / centerX) * 3;
       
-      card.style.transform = `perspective(2000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+      card.style.transform = `perspective(2000px) translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-      if (glare) {
-        const percentageX = (x / rect.width) * 100;
-        const percentageY = (y / rect.height) * 100;
-        glare.style.background = `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
-      }
+      // Posicionamos el brillo exactamente donde está el mouse
+      const percentageX = (x / rect.width) * 100;
+      const percentageY = (y / rect.height) * 100;
+      glare.style.background = `radial-gradient(circle at ${percentageX}% ${percentageY}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
+      glare.style.opacity = '1';
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(2000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      // Animación de retorno elástica y elegante
-      card.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-      if (glare) glare.style.opacity = '0';
-    });
-
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'none';
-      if (glare) glare.style.opacity = '1';
+      // Retorno a la posición original
+      card.style.transform = `perspective(2000px) translateY(0) scale(1) rotateX(0deg) rotateY(0deg)`;
+      glare.style.opacity = '0';
     });
   });
 
-  // 4. COLOR DE FONDO DINÁMICO
+  // 5. COLOR DE FONDO DINÁMICO AL SCROLLEAR
   const sections = document.querySelectorAll('.section-observer');
   const bgObserverOptions = { threshold: 0.35 };
 
@@ -91,23 +142,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sections.forEach(sec => bgObserver.observe(sec));
 
-  // 5. ANIMACIONES REVEAL EN CASCADA CON CUBIC-BEZIER
+  // 6. ANIMACIONES REVEAL Y SCRAMBLE EN SECCIONES
   const revealElements = document.querySelectorAll('.reveal');
-  const revealOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
+  const revealOptions = { 
+    threshold: 0.15, 
+    rootMargin: "0px 0px -50px 0px" 
   };
 
   const revealOnScroll = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Asegura que use la curva de animación premium
-        entry.target.style.transition = 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)';
         entry.target.classList.add('active');
+
+        // Buscamos si hay un título H2 dentro de la sección revelada
+        const sectionTitle = entry.target.querySelector('h2');
+        if (sectionTitle && !entry.target.classList.contains('scrambled')) {
+            // Guardamos el texto original, ejecutamos scramble y lo marcamos para no repetirlo
+            const originalText = sectionTitle.innerText;
+            scrambleText(sectionTitle, originalText, 1000);
+            entry.target.classList.add('scrambled');
+        }
         
-        setTimeout(() => {
-          entry.target.style.transitionDelay = '0s';
-        }, 1000);
+        // Dejamos de observar para que la animación de entrada ocurra solo una vez
         observer.unobserve(entry.target);
       }
     });
