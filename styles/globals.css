@@ -237,3 +237,63 @@ body {
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .nav-links { display: none; }
 }
+/* Terminal Style para el About */
+.terminal-window {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.terminal-header {
+  background: rgba(25, 25, 25, 0.9);
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.dot.red { background: #ef4444; }
+.dot.yellow { background: #eab308; }
+.dot.green { background: #22c55e; }
+
+.terminal-title {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  color: #a1a1aa;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.prompt { color: #22c55e; font-weight: bold; }
+.terminal-output { color: #e4e4e7; margin-bottom: 1rem; margin-left: 1rem; }
+.text-glow { text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+.blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.cv-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+}
