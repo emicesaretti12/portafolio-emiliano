@@ -15,13 +15,6 @@ export const portfolioData = {
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772111797/plenomax-home_te9id7.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772111797/plenomax-catalogo_b31oqs.jpg"] 
       },
       {
-        nombre: "eliceramica",
-        url: "#",
-        descripcion: "Ecommerce y catalogo web",
-        tecnologias: ["Frontend", "Backend", "APIs"],
-        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381158/eliceramica-home_xoravl.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772381158/eliceramica-tienda_cssudu.jpg"]
-      },
-      {
         nombre: "Polar-Chat",
         url: "https://github.com/emicesaretti12",
         descripcion: "Chatbot modular interactivo con diseño Bento Grid.",
@@ -53,19 +46,19 @@ export const portfolioData = {
       }
     ]
   },
-  ciberseguridad: {
-    id: "ciberseguridad",
-    titulo: "DevSecOps & Ciberseguridad",
-    descripcion: "Auditorías, protección de datos y mitigación.",
+  Ecommerce: {
+    id: "Ecommerce",
+    titulo: "tienda web para venta de ceramica artesanal",
+    descripcion: "CRM, login, panel de administración y otros módulos internos.",
     color: "#10b981", 
     bgColor: "#021c13", 
     items: [
       {
-        nombre: "Auditoría & Pentesting",
+        nombre: "eliceramica",
         url: "#",
-        descripcion: "Protocolos de seguridad integrados, cifrado y OSINT.",
-        tecnologias: ["Kali Linux", "Pentesting", "DevSecOps"],
-        imagenes: ["./assets/ciber-1.jpg", "./assets/ciber-2.jpg"]
+        descripcion: "frontend amigable y responsivo para mobil y web , backend apagado",
+        tecnologias: ["HTML", "CSS", "JS", "React"],
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772383903/eliceramica_owaobh.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383901/Captura_de_pantalla_2026-03-01_134829_kparsf.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383901/Captura_de_pantalla_2026-03-01_134723_xwqb24.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383900/Captura_de_pantalla_2026-03-01_134948_jbjeae.jpg"]
       }
     ]
   }
