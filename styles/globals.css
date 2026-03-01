@@ -20,7 +20,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* --- CUSTOM SCROLLBAR --- */
+/* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -43,7 +43,7 @@ body {
   background-color: #050505;
 }
 
-/* --- FONDOS DINÁMICOS Y AMBIENTE --- */
+/* FONDOS DINÁMICOS Y AMBIENTE */
 .dynamic-background {
   position: fixed;
   inset: 0;
@@ -86,7 +86,7 @@ body {
   z-index: 10;
 }
 
-/* --- NAVBAR GLASSMORPHISM --- */
+/* NAVBAR GLASSMORPHISM */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -139,7 +139,7 @@ body {
 .nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
 
-/* --- HERO SECTION --- */
+/* HERO SECTION */
 .hero {
   min-height: 90vh;
   display: flex;
@@ -188,7 +188,7 @@ body {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* --- BOTONES PREMIUM SHINE --- */
+/* BOTONES PREMIUM SHINE */
 .hero-actions {
   display: flex;
   gap: 1.5rem;
@@ -330,7 +330,7 @@ body {
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
   perspective: 2000px;
 }
 
@@ -340,13 +340,11 @@ body {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  padding: 1.8rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
-  /* Curva elástica para el hover magnético */
   transition: all 0.6s var(--ease-elastic);
 }
 
@@ -358,7 +356,7 @@ body {
     0 0 20px var(--theme-color-glow, rgba(255,255,255,0.05)) inset;
 }
 
-/* GLARE EFFECT (Brillo dinámico) */
+/* GLARE EFFECT */
 .glare {
   position: absolute;
   inset: 0;
@@ -368,85 +366,77 @@ body {
   transition: opacity 0.4s ease; z-index: 2;
 }
 
-/* --- SHOWCASE DE PÁGINAS WEBS (OVERLAPPING LAYOUT) --- */
-.web-showcase {
+/* --- NUEVA GALERÍA DE PRODUCTOS LIMPIA (SIDE-BY-SIDE) --- */
+.product-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 11; /* Formato panorámico de presentación */
-  margin-bottom: 2rem;
   z-index: 3;
 }
 
-.browser-mockup {
-  position: absolute;
-  background: #0a0a0a;
+/* Ventana de Producto Minimalista */
+.product-window {
+  background: #000;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-  transition: all 0.6s var(--ease-out-expo);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  /* Forzamos el aspecto ratio matemático basado en 430x600 */
+  aspect-ratio: 430 / 600; 
+  transition: all 0.5s var(--ease-out-expo);
 }
 
-/* Imagen principal (Fondo) */
-.main-mockup {
-  top: 0;
-  left: 0;
-  width: 82%;
-  height: 85%;
-  z-index: 1;
-}
-
-/* Imagen secundaria (Flotando adelante) */
-.secondary-mockup {
-  bottom: 0;
-  right: 0;
-  width: 45%;
-  height: 65%;
-  z-index: 2;
-  box-shadow: -15px -15px 30px rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-/* Barra del navegador estilo MacOS */
-.browser-bar {
-  height: 24px;
-  background: rgba(255, 255, 255, 0.03);
+/* Barra de Ventana Superior Minimalista */
+.window-bar {
+  height: 18px;
+  background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
-  padding: 0 12px;
-  gap: 6px;
+  padding: 0 10px;
+  gap: 5px;
 }
 
-.browser-bar span {
-  width: 8px;
-  height: 8px;
+.window-bar .dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
+  opacity: 0.5;
 }
-.browser-bar span:nth-child(1) { background: #ef4444; } /* Rojo */
-.browser-bar span:nth-child(2) { background: #eab308; } /* Amarillo */
-.browser-bar span:nth-child(3) { background: #22c55e; } /* Verde */
+.window-bar .red { background: #ef4444; }
+.window-bar .yellow { background: #eab308; }
+.window-bar .green { background: #22c55e; }
 
-/* Adaptación de la imagen web */
-.mockup-img {
+/* Contenedor de Imagen con Respeto de Ratio */
+.img-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  height: calc(100% - 18px); /* Descuenta la barra superior */
+  overflow: hidden;
+  position: relative;
+}
+
+.product-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top; /* Fuerza a mostrar la cabecera/navbar de la imagen */
+  /* IMPORTANTE: contain asegura que se vea toda la imagen sin cortar */
+  object-fit: contain; 
+  background-color: #080808; /* Fondo para si la tarjeta es más ancha */
+  transition: transform 0.5s var(--ease-out-expo);
 }
 
-.main-mockup .mockup-img {
-  height: calc(100% - 24px); /* Descuenta la altura de la barra del navegador */
+/* Efecto hover independiente por ventana */
+.bento-card:hover .product-window:nth-child(1) {
+  transform: translateY(-5px) scale(1.02) rotate(-1deg);
 }
 
-/* Efecto 3D interactivo al pasar el cursor por la tarjeta */
-.bento-card:hover .main-mockup {
-  transform: translateY(-5px) scale(1.02);
-}
-
-.bento-card:hover .secondary-mockup {
-  transform: translateY(-12px) scale(1.06);
-  box-shadow: -20px -20px 40px rgba(0,0,0,0.5);
+.bento-card:hover .product-window:nth-child(2) {
+  transform: translateY(-10px) scale(1.04) rotate(1deg);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
 }
 
 /* --- CONTENIDO DE LA TARJETA --- */
@@ -462,7 +452,7 @@ body {
 }
 
 .card-content p {
-  color: #d4d4d8; margin-bottom: 1.5rem;
+  color: #d4d4d8; margin-bottom: 2rem;
   font-size: 1.05rem; line-height: 1.7;
 }
 
@@ -492,10 +482,10 @@ body {
   transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-/* --- EFECTO SCRAMBLE --- */
+/* EFECTO SCRAMBLE */
 .scramble-text { display: inline-block; font-family: monospace; color: var(--theme-accent); }
 
-/* --- ANIMACIONES REVEAL AL SCROLL --- */
+/* ANIMACIONES REVEAL AL SCROLL */
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.95) rotateX(10deg);
@@ -510,14 +500,20 @@ body {
 .delay-2 { transition-delay: 0.25s; animation-delay: 0.3s; }
 .delay-3 { transition-delay: 0.4s; }
 
-/* --- RESPONSIVE DESIGN --- */
+/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
   .about-bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .bio-card, .edu-card, .tech-card { grid-column: span 1; }
+  .product-gallery { gap: 1rem; }
 }
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; }
+  .category-header h2 { font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .product-gallery { grid-template-columns: 1fr; }
 }

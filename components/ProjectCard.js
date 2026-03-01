@@ -8,22 +8,26 @@ export const ProjectCard = (proyecto, categoryId, index) => {
   const glareHtml = isWeb ? `<div class="glare"></div>` : '';
   const delay = index * 0.15;
 
-  // Lógica de presentación web superpuesta (Awwwards style)
+  // Lógica de presentación web: Dos ventanas separadas 430x600
   let imagesHtml = '';
   if (proyecto.imagenes && proyecto.imagenes.length > 0) {
-    imagesHtml = `
-      <div class="web-showcase">
-        <div class="browser-mockup main-mockup">
-          <div class="browser-bar">
-            <span></span><span></span><span></span>
-          </div>
-          <img src="${proyecto.imagenes[0]}" alt="${proyecto.nombre} presentación principal" loading="lazy" class="mockup-img">
+    const renderWindow = (imgSrc, altText) => `
+      <div class="product-window hover-lift">
+        <div class="window-bar">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
         </div>
-        
-        ${proyecto.imagenes[1] ? `
-        <div class="browser-mockup secondary-mockup">
-          <img src="${proyecto.imagenes[1]}" alt="${proyecto.nombre} detalle secundario" loading="lazy" class="mockup-img">
-        </div>` : ''}
+        <div class="img-wrapper">
+          <img src="${imgSrc}" alt="${altText}" loading="lazy" class="product-img">
+        </div>
+      </div>
+    `;
+
+    imagesHtml = `
+      <div class="product-gallery">
+        ${renderWindow(proyecto.imagenes[0], `${proyecto.nombre} presentación 1`)}
+        ${proyecto.imagenes[1] ? renderWindow(proyecto.imagenes[1], `${proyecto.nombre} presentación 2`) : ''}
       </div>
     `;
   }
