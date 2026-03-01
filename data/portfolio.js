@@ -16,7 +16,7 @@ export const portfolioData = {
       },
       {
         nombre: "Polar-Chat",
-        url: "https://github.com/emicesaretti12",
+        url: "https://polar-nu-eight.vercel.app",
         descripcion: "Chatbot modular interactivo con diseño Bento Grid.",
         tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"],
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-home_rbkiod.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-2_g2mlqk.jpg"]
@@ -38,8 +38,8 @@ export const portfolioData = {
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772382979/Captura_de_pantalla_2026-03-01_132243_lh5vau.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383069/Captura_de_pantalla_2026-03-01_133612_ihuo2i.jpg"]
       },
       {
-        nombre: "software de control horario",
-        url: "#",
+        nombre: "software de control horario -  licencia de activacion: LECO-2025-PRO",
+        url: "https://demo-le-co.vercel.app",
         descripcion: " registra, almacena y gestiona los horarios de entrada y salida del personal, permitiendo llevar un control preciso de la jornada laboral.",
         tecnologias: ["Linux", "Networking", "VirtualBox"],
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381994/Captura_de_pantalla_166_uca0r4.png", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772381998/Captura_de_pantalla_167_ofljm3.png"]
@@ -55,7 +55,7 @@ export const portfolioData = {
     items: [
       {
         nombre: "eliceramica",
-        url: "#",
+        url: "https://eliceramica.vercel.app",
         descripcion: "frontend amigable y responsivo para mobil y web , backend apagado",
         tecnologias: ["HTML", "CSS", "JS", "React"],
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772383903/eliceramica_owaobh.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383901/Captura_de_pantalla_2026-03-01_134829_kparsf.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383901/Captura_de_pantalla_2026-03-01_134723_xwqb24.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383900/Captura_de_pantalla_2026-03-01_134948_jbjeae.jpg"]
