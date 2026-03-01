@@ -6,8 +6,7 @@ export const Navbar = () => {
         <li><a href="#about">CV</a></li>
         <li><a href="#web">Web</a></li>
         <li><a href="#software">Software</a></li>
-        <li><a href="#ciberseguridad">Seguridad</a></li>
-      </ul>
+        <li><a href="#Ecommerce">E-Commerce</a></li> </ul>
     </nav>
   `;
 };

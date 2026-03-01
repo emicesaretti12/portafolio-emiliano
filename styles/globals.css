@@ -20,7 +20,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* CUSTOM SCROLLBAR */
+/* --- CUSTOM SCROLLBAR --- */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -43,7 +43,7 @@ body {
   background-color: #050505;
 }
 
-/* FONDOS DINÁMICOS */
+/* --- FONDOS DINÁMICOS Y AMBIENTE --- */
 .dynamic-background {
   position: fixed;
   inset: 0;
@@ -86,7 +86,7 @@ body {
   z-index: 10;
 }
 
-/* NAVBAR */
+/* --- NAVBAR GLASSMORPHISM --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -139,7 +139,7 @@ body {
 .nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
 
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 .hero {
   min-height: 90vh;
   display: flex;
@@ -188,7 +188,7 @@ body {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* BOTONES PREMIUM SHINE */
+/* --- BOTONES PREMIUM SHINE --- */
 .hero-actions {
   display: flex;
   gap: 1.5rem;
@@ -329,159 +329,179 @@ body {
 /* --- BENTO GRID DE PROYECTOS --- */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Umbral reducido para stacking temprano */
   gap: 2.5rem;
   perspective: 2000px;
 }
 
-/* --- REDISEÑO TOTAL: TARJETA DE IMAGEN COMPLETA --- */
 .bento-card {
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  position: relative;
-  overflow: hidden;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  /* Respetamos la relación de aspecto exacta 430x600 */
-  aspect-ratio: 430 / 600; 
+  position: relative;
+  overflow: hidden;
   transition: all 0.6s var(--ease-elastic);
-  cursor: pointer;
-  padding: 0; /* Eliminamos padding interno */
 }
 
-/* Efectos de elevación generales */
 .bento-card:hover {
   transform: translateY(-10px) scale(1.02);
-  border-color: var(--theme-color, rgba(255,255,255,0.1));
-  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 20px 40px -10px rgba(0,0,0,0.5),
+    0 0 20px var(--theme-color-glow, rgba(255,255,255,0.05)) inset;
 }
 
-/* GLARE EFFECT (Brillo dinámico JS) */
+/* GLARE EFFECT (Brillo dinámico) */
 .glare {
   position: absolute;
   inset: 0;
   border-radius: 24px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
   opacity: 0; pointer-events: none;
-  transition: opacity 0.4s ease; z-index: 5;
+  transition: opacity 0.4s ease; z-index: 2;
 }
 
-/* --- CAPA DE FONDOS (CROSS-FADE ANIMATION) --- */
-.card-background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.card-background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Cubre todo el contenedor */
-  position: absolute;
-  inset: 0;
-  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-}
-
-/* Imagen secundaria (Hover) oculta por defecto */
-.hover-img {
-  opacity: 0;
-  transform: scale(1.1); /* Ligeramente más grande para efecto zoom */
-}
-
-/* Lógica de Cross-Fade al Hover */
-.bento-card:hover .base-img {
-  opacity: 0;
-  transform: scale(1.05);
-}
-
-.bento-card:hover .hover-img {
-  opacity: 1;
-  transform: scale(1); /* Vuelve a tamaño normal */
-}
-
-/* --- CAPA DE CONTENIDO (OVERLAY ANIMADO) --- */
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* --- GALERÍA DE PRODUCTOS LIMPIA (SIDE-BY-SIDE) - BASE --- */
+.product-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
   z-index: 3;
+}
+
+/* Ventana de Producto Minimalista - BASE */
+.product-window {
+  background: #000;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Alineado abajo */
-  padding: 2.5rem;
-  /* Degradado oscuro para lectura */
-  background: linear-gradient(to top, 
-    rgba(0,0,0,0.95) 0%, 
-    rgba(0,0,0,0.8) 30%, 
-    transparent 100%);
+  aspect-ratio: 430 / 600; /* Ratio base vertical 430x600 */
+  transition: all 0.5s var(--ease-out-expo);
 }
 
-.overlay-content {
-  transform: translateY(80px); /* Oculto abajo */
-  opacity: 0;
-  transition: transform 0.6s var(--ease-elastic), opacity 0.6s ease;
+/* Barra de Ventana Superior Minimalista - BASE */
+.window-bar {
+  height: 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 5px;
 }
 
-/* Animación de subida al Hover */
-.bento-card:hover .overlay-content {
-  transform: translateY(0);
-  opacity: 1;
+.window-bar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.window-bar .red { background: #ef4444; }
+.window-bar .yellow { background: #eab308; }
+.window-bar .green { background: #22c55e; }
+
+/* Contenedor de Imagen con Respeto de Ratio - BASE */
+.img-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  height: calc(100% - 18px); /* Descuenta la barra superior */
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 430 / 600; /* Ratio base vertical 430x600 */
 }
 
-.card-header-block h3 {
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 1rem;
-  letter-spacing: -1px;
+.product-img {
+  width: 100%;
+  height: 100%;
+  /* Contain asegura que se vea toda la imagen sin cortar */
+  object-fit: contain; 
+  background-color: #080808; /* Fondo para si la tarjeta es más amplia que la imagen */
+  transition: transform 0.5s var(--ease-out-expo);
 }
 
-.card-details-block p {
-  color: #d4d4d8;
-  margin-bottom: 2rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
+/* Efecto hover independiente por ventana */
+.bento-card:hover .product-window:nth-child(1) {
+  transform: translateY(-5px) scale(1.02) rotate(-1deg);
 }
 
-/* Tech Stack dentro del overlay */
+.bento-card:hover .product-window:nth-child(2) {
+  transform: translateY(-10px) scale(1.04) rotate(1deg);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+/* --- ESTILOS ESPECÍFICOS E-COMMERCE (1300x600 PANORÁMICO) --- */
+/* Target tarjetas específicas de Ecommerce */
+.bento-card.category-ecommerce {
+  padding: 1.5rem; /* Ajuste sutil de padding */
+}
+
+/* Target ventanas de producto dentro de tarjetas Ecommerce */
+.bento-card.category-ecommerce .product-window {
+  aspect-ratio: 1300 / 600; /* Ratio panorámico exacto 1300x600 */
+}
+
+/* Target contenedores de imagen dentro de tarjetas Ecommerce */
+.bento-card.category-ecommerce .img-wrapper {
+  aspect-ratio: 1300 / 600; /* Ratio panorámico exacto 1300x600 */
+}
+
+/* --- CONTENIDO DE LA TARJETA --- */
+.card-content {
+  position: relative;
+  z-index: 3;
+  flex-grow: 1; /* Empuja el botón hacia abajo si el texto es corto */
+}
+
+.card-content h3 {
+  font-size: 1.8rem; margin-bottom: 1rem;
+  color: #fff; letter-spacing: -0.5px;
+}
+
+.card-content p {
+  color: #d4d4d8; margin-bottom: 2rem;
+  font-size: 1.05rem; line-height: 1.7;
+}
+
 .tech-stack {
-  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem;
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem;
 }
 
 .tech-tag {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--theme-color, #fff);
   padding: 0.4rem 0.9rem; border-radius: 6px;
   font-size: 0.8rem; font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
 }
 
-/* Botón Ver Proyecto Premium */
 .card-link {
   align-self: flex-start;
-  padding: 0.9rem 2rem; 
-  background: var(--theme-color, #fff);
-  color: #fff; 
-  text-decoration: none;
-  font-weight: 700; font-size: 1rem;
-  border-radius: 8px; 
-  transition: all 0.3s var(--ease-out-expo);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  padding: 0.8rem 1.8rem; background: #fff;
+  color: #000; text-decoration: none;
+  font-weight: 700; font-size: 0.95rem;
+  border-radius: 8px; transition: all 0.3s var(--ease-out-expo);
+  position: relative; z-index: 3;
 }
 
 .card-link:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  background: var(--theme-color, #fff); color: #fff;
+  transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-/* --- EFECTO SCRAMBLE --- */
+/* EFECTO SCRAMBLE */
 .scramble-text { display: inline-block; font-family: monospace; color: var(--theme-accent); }
 
-/* --- ANIMACIONES REVEAL AL SCROLL --- */
+/* ANIMACIONES REVEAL AL SCROLL */
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.95) rotateX(10deg);
@@ -496,24 +516,30 @@ body {
 .delay-2 { transition-delay: 0.25s; animation-delay: 0.3s; }
 .delay-3 { transition-delay: 0.4s; }
 
-/* --- RESPONSIVE DESIGN --- */
+/* --- RESPONSIVE DESIGN & MOBILE OPTIMIZATION --- */
 @media (max-width: 992px) {
   .about-bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .bio-card, .edu-card, .tech-card { grid-column: span 1; }
+  .product-gallery { gap: 1rem; }
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hero-actions { flex-direction: column; }
-  .btn-primary, .btn-secondary { width: 100%; }
-  .category-header h2 { font-size: 2.5rem; }
-  
-  /* En móvil, mostramos el contenido siempre o con tap */
-  .overlay-content {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .card-overlay {
-    padding: 1.5rem;
+  .nav-links { display: none; } /* Ocultar enlaces de navegación largos */
+  .hero-actions { flex-direction: column; gap: 1rem; } /* Botones Hero en columna */
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; } /* Botones ancho completo */
+  .category-header h2 { font-size: 2.5rem; } /* Reducir tamaño de título de categoría */
+  .card-content h3 { font-size: 1.5rem; } /* Título de tarjeta más pequeño */
+  .card-content p { font-size: 0.95rem; margin-bottom: 1.5rem; } /* Párrafos más pequeños/compactos */
+  .bento-card { padding: 1.5rem; } /* Reducir padding de tarjeta */
+  .product-gallery { gap: 0.8rem; margin-bottom: 1.5rem; } /* Galería más compacta */
+}
+
+/* Optimización para móviles muy pequeños */
+@media (max-width: 480px) {
+  .product-gallery { grid-template-columns: 1fr; } /* Apilar imágenes dentro de la tarjeta */
+  .product-window { aspect-ratio: auto; } /* Eliminar aspect-ratio forzado si están apiladas */
+  .bento-card.category-ecommerce .product-window,
+  .bento-card.category-ecommerce .img-wrapper {
+    aspect-ratio: auto; /* Adaptar ratio panorámico apilado */
   }
 }
