@@ -3,25 +3,27 @@ export const ProjectCard = (proyecto, categoryId, index) => {
     .map(tech => `<span class="tech-tag">${tech}</span>`)
     .join('');
 
-  // Lógica Senior: Web tiene 3D (tilt-card), las demás elevación sutil.
   const isWeb = categoryId === 'web';
   const interactionClass = isWeb ? 'tilt-card' : 'hover-lift';
   const glareHtml = isWeb ? `<div class="glare"></div>` : '';
-  
-  // Staggered Animation Delay
   const delay = index * 0.15;
 
-  // Renderizado dinámico de las 2 imágenes
+  // Lógica de presentación web superpuesta (Awwwards style)
   let imagesHtml = '';
-  if (proyecto.imagenes && proyecto.imagenes.length === 2) {
+  if (proyecto.imagenes && proyecto.imagenes.length > 0) {
     imagesHtml = `
-      <div class="card-images">
-        <div class="img-wrapper">
-          <img src="${proyecto.imagenes[0]}" alt="${proyecto.nombre} vista 1" loading="lazy" class="card-img">
+      <div class="web-showcase">
+        <div class="browser-mockup main-mockup">
+          <div class="browser-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <img src="${proyecto.imagenes[0]}" alt="${proyecto.nombre} presentación principal" loading="lazy" class="mockup-img">
         </div>
-        <div class="img-wrapper">
-          <img src="${proyecto.imagenes[1]}" alt="${proyecto.nombre} vista 2" loading="lazy" class="card-img">
-        </div>
+        
+        ${proyecto.imagenes[1] ? `
+        <div class="browser-mockup secondary-mockup">
+          <img src="${proyecto.imagenes[1]}" alt="${proyecto.nombre} detalle secundario" loading="lazy" class="mockup-img">
+        </div>` : ''}
       </div>
     `;
   }
