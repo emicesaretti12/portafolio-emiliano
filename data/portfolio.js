@@ -38,18 +38,18 @@ export const portfolioData = {
     bgColor: "#140524", 
     items: [
       {
-        nombre: "Gestión de Gimnasios",
+        nombre: "Logica de Localizador mediante ingenieria",
         url: "#",
-        descripcion: "Backend Python. Automatización reduciendo tiempo operativo 50%.",
+        descripcion: "localicador mediante ingenieria , registra las ubicaciones en .txt",
         tecnologias: ["Python", "MySQL", "Data Tuning"],
-        imagenes: ["./assets/gym-1.jpg", "./assets/gym-2.jpg"]
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772382979/Captura_de_pantalla_2026-03-01_132243_lh5vau.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772383069/Captura_de_pantalla_2026-03-01_133612_ihuo2i.jpg"]
       },
       {
         nombre: "software de control horario",
         url: "#",
         descripcion: " registra, almacena y gestiona los horarios de entrada y salida del personal, permitiendo llevar un control preciso de la jornada laboral.",
         tecnologias: ["Linux", "Networking", "VirtualBox"],
-        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381994/Captura_de_pantalla_166_uca0r4.png", ".https://res.cloudinary.com/dyt92aarw/image/upload/v1772381998/Captura_de_pantalla_167_ofljm3.png"]
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381994/Captura_de_pantalla_166_uca0r4.png", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772381998/Captura_de_pantalla_167_ofljm3.png"]
       }
     ]
   },
