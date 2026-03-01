@@ -49,7 +49,7 @@ export const portfolioData = {
         url: "#",
         descripcion: " registra, almacena y gestiona los horarios de entrada y salida del personal, permitiendo llevar un control preciso de la jornada laboral.",
         tecnologias: ["Linux", "Networking", "VirtualBox"],
-        imagenes: ["./assets/utn-1.jpg", "./assets/utn-2.jpg"]
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381994/Captura_de_pantalla_166_uca0r4.png", ".https://res.cloudinary.com/dyt92aarw/image/upload/v1772381998/Captura_de_pantalla_167_ofljm3.png"]
       }
     ]
   },
