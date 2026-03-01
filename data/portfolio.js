@@ -12,21 +12,21 @@ export const portfolioData = {
         descripcion: "Plataforma web corporativa end-to-end. Digitalización de procesos.",
         tecnologias: ["Full Stack", "PostgreSQL", "Arquitectura"],
         // Asegúrate de tener estas imágenes 430x600 en /assets
-        imagenes: ["./assets/plenomax-1.jpg", "./assets/plenomax-2.jpg"] 
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772111797/plenomax-home_te9id7.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772111797/plenomax-catalogo_b31oqs.jpg"] 
       },
       {
-        nombre: "Menú Digital & BoxPoint",
+        nombre: "eliceramica",
         url: "#",
-        descripcion: "SaaS gastronómico e integración WhatsApp. Reservas BoxPoint.",
+        descripcion: "Ecommerce y catalogo web",
         tecnologias: ["Frontend", "Backend", "APIs"],
-        imagenes: ["./assets/menu-1.jpg", "./assets/menu-2.jpg"]
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772381158/eliceramica-home_xoravl.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772381158/eliceramica-tienda_cssudu.jpg"]
       },
       {
         nombre: "Polar-Chat",
         url: "https://github.com/emicesaretti12",
         descripcion: "Chatbot modular interactivo con diseño Bento Grid.",
         tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"],
-        imagenes: ["./assets/polar-1.jpg", "./assets/polar-2.jpg"]
+        imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-home_rbkiod.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-2_g2mlqk.jpg"]
       }
     ]
   },
@@ -45,9 +45,9 @@ export const portfolioData = {
         imagenes: ["./assets/gym-1.jpg", "./assets/gym-2.jpg"]
       },
       {
-        nombre: "Infraestructura UTN",
+        nombre: "software de control horario",
         url: "#",
-        descripcion: "Administración de red, virtualización Debian y scripts Bash/Python.",
+        descripcion: " registra, almacena y gestiona los horarios de entrada y salida del personal, permitiendo llevar un control preciso de la jornada laboral.",
         tecnologias: ["Linux", "Networking", "VirtualBox"],
         imagenes: ["./assets/utn-1.jpg", "./assets/utn-2.jpg"]
       }
