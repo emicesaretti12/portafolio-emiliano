@@ -5,7 +5,7 @@
   --font-main: 'Space Grotesk', sans-serif;
   --theme-accent: #3b82f6;
   
-  /* CURVAS DE ANIMACIÓN NIVEL DIOS */
+  /* CURVAS DE ANIMACIÓN NIVEL DIOS (Spring & Expo) */
   --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -43,7 +43,7 @@ body {
   background-color: #050505;
 }
 
-/* FONDOS DINÁMICOS Y AMBIENTE */
+/* FONDOS DINÁMICOS */
 .dynamic-background {
   position: fixed;
   inset: 0;
@@ -86,7 +86,7 @@ body {
   z-index: 10;
 }
 
-/* NAVBAR GLASSMORPHISM */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -329,163 +329,159 @@ body {
 /* --- BENTO GRID DE PROYECTOS --- */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   perspective: 2000px;
 }
 
+/* --- REDISEÑO TOTAL: TARJETA DE IMAGEN COMPLETA --- */
 .bento-card {
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(10, 10, 10, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Respetamos la relación de aspecto exacta 430x600 */
+  aspect-ratio: 430 / 600; 
   transition: all 0.6s var(--ease-elastic);
+  cursor: pointer;
+  padding: 0; /* Eliminamos padding interno */
 }
 
+/* Efectos de elevación generales */
 .bento-card:hover {
   transform: translateY(-10px) scale(1.02);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 20px 40px -10px rgba(0,0,0,0.5),
-    0 0 20px var(--theme-color-glow, rgba(255,255,255,0.05)) inset;
+  border-color: var(--theme-color, rgba(255,255,255,0.1));
+  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.8);
 }
 
-/* GLARE EFFECT */
+/* GLARE EFFECT (Brillo dinámico JS) */
 .glare {
   position: absolute;
   inset: 0;
   border-radius: 24px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
   opacity: 0; pointer-events: none;
-  transition: opacity 0.4s ease; z-index: 2;
+  transition: opacity 0.4s ease; z-index: 5;
 }
 
-/* --- NUEVA GALERÍA DE PRODUCTOS LIMPIA (SIDE-BY-SIDE) --- */
-.product-gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-  position: relative;
-  z-index: 3;
-}
-
-/* Ventana de Producto Minimalista */
-.product-window {
-  background: #000;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  display: flex;
-  flex-direction: column;
-  /* Forzamos el aspecto ratio matemático basado en 430x600 */
-  aspect-ratio: 430 / 600; 
-  transition: all 0.5s var(--ease-out-expo);
-}
-
-/* Barra de Ventana Superior Minimalista */
-.window-bar {
-  height: 18px;
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  gap: 5px;
-}
-
-.window-bar .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  opacity: 0.5;
-}
-.window-bar .red { background: #ef4444; }
-.window-bar .yellow { background: #eab308; }
-.window-bar .green { background: #22c55e; }
-
-/* Contenedor de Imagen con Respeto de Ratio */
-.img-wrapper {
-  flex-grow: 1;
-  width: 100%;
-  height: calc(100% - 18px); /* Descuenta la barra superior */
-  overflow: hidden;
-  position: relative;
-}
-
-.product-img {
+/* --- CAPA DE FONDOS (CROSS-FADE ANIMATION) --- */
+.card-background {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  /* IMPORTANTE: contain asegura que se vea toda la imagen sin cortar */
-  object-fit: contain; 
-  background-color: #080808; /* Fondo para si la tarjeta es más ancha */
-  transition: transform 0.5s var(--ease-out-expo);
+  z-index: 1;
 }
 
-/* Efecto hover independiente por ventana */
-.bento-card:hover .product-window:nth-child(1) {
-  transform: translateY(-5px) scale(1.02) rotate(-1deg);
+.card-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cubre todo el contenedor */
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
 }
 
-.bento-card:hover .product-window:nth-child(2) {
-  transform: translateY(-10px) scale(1.04) rotate(1deg);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+/* Imagen secundaria (Hover) oculta por defecto */
+.hover-img {
+  opacity: 0;
+  transform: scale(1.1); /* Ligeramente más grande para efecto zoom */
 }
 
-/* --- CONTENIDO DE LA TARJETA --- */
-.card-content {
-  position: relative;
+/* Lógica de Cross-Fade al Hover */
+.bento-card:hover .base-img {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.bento-card:hover .hover-img {
+  opacity: 1;
+  transform: scale(1); /* Vuelve a tamaño normal */
+}
+
+/* --- CAPA DE CONTENIDO (OVERLAY ANIMADO) --- */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 3;
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Alineado abajo */
+  padding: 2.5rem;
+  /* Degradado oscuro para lectura */
+  background: linear-gradient(to top, 
+    rgba(0,0,0,0.95) 0%, 
+    rgba(0,0,0,0.8) 30%, 
+    transparent 100%);
 }
 
-.card-content h3 {
-  font-size: 1.8rem; margin-bottom: 1rem;
-  color: #fff; letter-spacing: -0.5px;
+.overlay-content {
+  transform: translateY(80px); /* Oculto abajo */
+  opacity: 0;
+  transition: transform 0.6s var(--ease-elastic), opacity 0.6s ease;
 }
 
-.card-content p {
-  color: #d4d4d8; margin-bottom: 2rem;
-  font-size: 1.05rem; line-height: 1.7;
+/* Animación de subida al Hover */
+.bento-card:hover .overlay-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 
+.card-header-block h3 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+}
+
+.card-details-block p {
+  color: #d4d4d8;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Tech Stack dentro del overlay */
 .tech-stack {
-  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem;
+  display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem;
 }
 
 .tech-tag {
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--theme-color, #fff);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
   padding: 0.4rem 0.9rem; border-radius: 6px;
   font-size: 0.8rem; font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
 }
 
+/* Botón Ver Proyecto Premium */
 .card-link {
   align-self: flex-start;
-  padding: 0.8rem 1.8rem; background: #fff;
-  color: #000; text-decoration: none;
-  font-weight: 700; font-size: 0.95rem;
-  border-radius: 8px; transition: all 0.3s var(--ease-out-expo);
-  position: relative; z-index: 3;
+  padding: 0.9rem 2rem; 
+  background: var(--theme-color, #fff);
+  color: #fff; 
+  text-decoration: none;
+  font-weight: 700; font-size: 1rem;
+  border-radius: 8px; 
+  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .card-link:hover {
-  background: var(--theme-color, #fff); color: #fff;
-  transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-/* EFECTO SCRAMBLE */
+/* --- EFECTO SCRAMBLE --- */
 .scramble-text { display: inline-block; font-family: monospace; color: var(--theme-accent); }
 
-/* ANIMACIONES REVEAL AL SCROLL */
+/* --- ANIMACIONES REVEAL AL SCROLL --- */
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.95) rotateX(10deg);
@@ -500,11 +496,10 @@ body {
 .delay-2 { transition-delay: 0.25s; animation-delay: 0.3s; }
 .delay-3 { transition-delay: 0.4s; }
 
-/* RESPONSIVE DESIGN */
+/* --- RESPONSIVE DESIGN --- */
 @media (max-width: 992px) {
   .about-bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .bio-card, .edu-card, .tech-card { grid-column: span 1; }
-  .product-gallery { gap: 1rem; }
 }
 
 @media (max-width: 768px) {
@@ -512,8 +507,13 @@ body {
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; }
   .category-header h2 { font-size: 2.5rem; }
-}
-
-@media (max-width: 480px) {
-  .product-gallery { grid-template-columns: 1fr; }
+  
+  /* En móvil, mostramos el contenido siempre o con tap */
+  .overlay-content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .card-overlay {
+    padding: 1.5rem;
+  }
 }
