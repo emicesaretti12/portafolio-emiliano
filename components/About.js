@@ -48,7 +48,7 @@ export const About = () => {
           <div class="card-content">
             <h3 style="color: #fff; margin-bottom: 1.5rem;">Core Stack</h3>
             <div class="skills-container">
-              <span class="skill-pill">Python (Avanzado)</span>
+              <span class="skill-pill">Python</span>
               <span class="skill-pill">PostgreSQL / SQLite</span>
               <span class="skill-pill">Vanilla JS / HTML / CSS</span>
               <span class="skill-pill">Java</span>
