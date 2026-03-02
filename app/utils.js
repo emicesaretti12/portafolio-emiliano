@@ -1,5 +1,5 @@
 // Función para el efecto de texto desencriptado
-export const scrambleText = (element, final text, duration = 1000) => {
+export const scrambleText = (element, final text, duration = 1500) => {
   const chars = '!<>-_\\/[]{}—=+*^?#________'; // Caracteres para el efecto "hacker"
   const frameRate = 30;
   const totalFrames = (duration / 1000) * frameRate;
