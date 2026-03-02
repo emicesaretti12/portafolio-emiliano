@@ -14,7 +14,7 @@ export const About = () => {
               Desarrollador Full Stack y estudiante de Ingeniería en Sistemas. Me especializo en arquitecturas modulares, modelado de bases de datos relacionales y automatización. Apasionado por DevSecOps, la resolución de problemas complejos y la creación de interfaces que generen un impacto directo en los objetivos del negocio.
             </p>
             <div class="about-actions">
-              <a href="./assets/CV_Emiliano.pdf" download="CV_Emiliano_FullStack.pdf" class="btn-primary hover-lift">
+              <a href="./assets/Cesaretti-Emiliano-46508432.pdf" download="CV_Emiliano_FullStack.pdf" class="btn-primary hover-lift">
                 Descargar CV (PDF)
               </a>
               <a href="./cv.html" class="btn-secondary hover-lift interactive-link">

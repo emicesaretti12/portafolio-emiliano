@@ -48,7 +48,7 @@ body {
   position: fixed;
   inset: 0;
   background-color: #050505;
-  transition: background-color 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color 1.5s var(--ease-out-expo);
   z-index: -2;
 }
 
@@ -136,6 +136,7 @@ body {
   background-color: #fff;
   transition: width 0.3s ease;
 }
+
 .nav-links a:hover { color: #fff; }
 .nav-links a:hover::after { width: 100%; }
 
@@ -239,25 +240,26 @@ body {
   transition: none;
 }
 
-.btn-primary:hover::after, .btn-secondary:hover::after {
-  animation: shine 0.7s var(--ease-out-expo);
+/* Efectos hover para botones (Protegidos para táctil) */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover::after, .btn-secondary:hover::after {
+    animation: shine 0.7s var(--ease-out-expo);
+  }
+  .btn-primary:hover {
+    background: #38bdf8;
+    border-color: #38bdf8;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+    transform: translateY(-3px);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+  }
 }
 
 @keyframes shine { 100% { left: 200%; } }
-
-.btn-primary:hover {
-  background: #38bdf8;
-  border-color: #38bdf8;
-  color: #fff;
-  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-  transform: translateY(-3px);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-3px);
-}
 
 /* --- ABOUT SECTION PREMIUM (Bento Layout) --- */
 .about-section {
@@ -306,10 +308,12 @@ body {
   transition: all 0.3s ease; color: #e4e4e7;
 }
 
-.skill-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .skill-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
 }
 
 /* --- PROJECT CATEGORIES --- */
@@ -329,11 +333,12 @@ body {
 /* --- BENTO GRID DE PROYECTOS --- */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Umbral reducido para stacking temprano */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   perspective: 2000px;
 }
 
+/* TARJETA CONTENEDOR */
 .bento-card {
   background: rgba(20, 20, 20, 0.6);
   backdrop-filter: blur(24px);
@@ -348,14 +353,6 @@ body {
   transition: all 0.6s var(--ease-elastic);
 }
 
-.bento-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 20px 40px -10px rgba(0,0,0,0.5),
-    0 0 20px var(--theme-color-glow, rgba(255,255,255,0.05)) inset;
-}
-
 /* GLARE EFFECT (Brillo dinámico) */
 .glare {
   position: absolute;
@@ -366,7 +363,7 @@ body {
   transition: opacity 0.4s ease; z-index: 2;
 }
 
-/* --- GALERÍA DE PRODUCTOS LIMPIA (SIDE-BY-SIDE) - BASE --- */
+/* --- GALERÍA DE PRODUCTOS (BASE VERTICAL 430x600) --- */
 .product-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -376,7 +373,7 @@ body {
   z-index: 3;
 }
 
-/* Ventana de Producto Minimalista - BASE */
+/* Ventana de Producto Minimalista */
 .product-window {
   background: #000;
   border-radius: 12px;
@@ -385,11 +382,11 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  aspect-ratio: 430 / 600; /* Ratio base vertical 430x600 */
+  aspect-ratio: 430 / 600; 
   transition: all 0.5s var(--ease-out-expo);
 }
 
-/* Barra de Ventana Superior Minimalista - BASE */
+/* Barra de Ventana Superior */
 .window-bar {
   height: 18px;
   background: rgba(255, 255, 255, 0.02);
@@ -400,66 +397,65 @@ body {
   gap: 5px;
 }
 
-.window-bar .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  opacity: 0.5;
-}
+.window-bar .dot { width: 6px; height: 6px; border-radius: 50%; opacity: 0.5; }
 .window-bar .red { background: #ef4444; }
 .window-bar .yellow { background: #eab308; }
 .window-bar .green { background: #22c55e; }
 
-/* Contenedor de Imagen con Respeto de Ratio - BASE */
+/* Contenedor de Imagen */
 .img-wrapper {
   flex-grow: 1;
   width: 100%;
-  height: calc(100% - 18px); /* Descuenta la barra superior */
+  height: calc(100% - 18px); 
   overflow: hidden;
   position: relative;
-  aspect-ratio: 430 / 600; /* Ratio base vertical 430x600 */
+  aspect-ratio: 430 / 600; 
 }
 
 .product-img {
   width: 100%;
   height: 100%;
-  /* Contain asegura que se vea toda la imagen sin cortar */
   object-fit: contain; 
-  background-color: #080808; /* Fondo para si la tarjeta es más amplia que la imagen */
+  background-color: #080808; 
   transition: transform 0.5s var(--ease-out-expo);
 }
 
-/* Efecto hover independiente por ventana */
-.bento-card:hover .product-window:nth-child(1) {
-  transform: translateY(-5px) scale(1.02) rotate(-1deg);
-}
-
-.bento-card:hover .product-window:nth-child(2) {
-  transform: translateY(-10px) scale(1.04) rotate(1deg);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-}
-
 /* --- ESTILOS ESPECÍFICOS E-COMMERCE (1300x600 PANORÁMICO) --- */
-/* Target tarjetas específicas de Ecommerce */
 .bento-card.category-ecommerce {
-  padding: 1.5rem; /* Ajuste sutil de padding */
+  padding: 1.5rem;
 }
 
-/* Target ventanas de producto dentro de tarjetas Ecommerce */
 .bento-card.category-ecommerce .product-window {
-  aspect-ratio: 1300 / 600; /* Ratio panorámico exacto 1300x600 */
+  aspect-ratio: 1300 / 600;
 }
 
-/* Target contenedores de imagen dentro de tarjetas Ecommerce */
 .bento-card.category-ecommerce .img-wrapper {
-  aspect-ratio: 1300 / 600; /* Ratio panorámico exacto 1300x600 */
+  aspect-ratio: 1300 / 600;
+}
+
+/* EFECTOS HOVER (SOLO PARA PANTALLAS CON RATÓN) */
+@media (hover: hover) and (pointer: fine) {
+  .bento-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5), 0 0 20px var(--theme-color-glow, rgba(255,255,255,0.05)) inset;
+  }
+  
+  .bento-card:hover .product-window:nth-child(1) {
+    transform: translateY(-5px) scale(1.02) rotate(-1deg);
+  }
+
+  .bento-card:hover .product-window:nth-child(2) {
+    transform: translateY(-10px) scale(1.04) rotate(1deg);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+  }
 }
 
 /* --- CONTENIDO DE LA TARJETA --- */
 .card-content {
   position: relative;
   z-index: 3;
-  flex-grow: 1; /* Empuja el botón hacia abajo si el texto es corto */
+  flex-grow: 1;
 }
 
 .card-content h3 {
@@ -493,9 +489,11 @@ body {
   position: relative; z-index: 3;
 }
 
-.card-link:hover {
-  background: var(--theme-color, #fff); color: #fff;
-  transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+@media (hover: hover) and (pointer: fine) {
+  .card-link:hover {
+    background: var(--theme-color, #fff); color: #fff;
+    transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
 }
 
 /* EFECTO SCRAMBLE */
@@ -516,30 +514,48 @@ body {
 .delay-2 { transition-delay: 0.25s; animation-delay: 0.3s; }
 .delay-3 { transition-delay: 0.4s; }
 
-/* --- RESPONSIVE DESIGN & MOBILE OPTIMIZATION --- */
+/* =========================================================
+   OPTIMIZACIÓN MOBILE & RESPONSIVE (TOUCH-FIRST UX)
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .category-section, .about-section { padding: 6rem 0; }
+  .bento-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+}
+
 @media (max-width: 992px) {
   .about-bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
   .bio-card, .edu-card, .tech-card { grid-column: span 1; }
-  .product-gallery { gap: 1rem; }
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; } /* Ocultar enlaces de navegación largos */
-  .hero-actions { flex-direction: column; gap: 1rem; } /* Botones Hero en columna */
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; } /* Botones ancho completo */
-  .category-header h2 { font-size: 2.5rem; } /* Reducir tamaño de título de categoría */
-  .card-content h3 { font-size: 1.5rem; } /* Título de tarjeta más pequeño */
-  .card-content p { font-size: 0.95rem; margin-bottom: 1.5rem; } /* Párrafos más pequeños/compactos */
-  .bento-card { padding: 1.5rem; } /* Reducir padding de tarjeta */
-  .product-gallery { gap: 0.8rem; margin-bottom: 1.5rem; } /* Galería más compacta */
-}
-
-/* Optimización para móviles muy pequeños */
-@media (max-width: 480px) {
-  .product-gallery { grid-template-columns: 1fr; } /* Apilar imágenes dentro de la tarjeta */
-  .product-window { aspect-ratio: auto; } /* Eliminar aspect-ratio forzado si están apiladas */
-  .bento-card.category-ecommerce .product-window,
-  .bento-card.category-ecommerce .img-wrapper {
-    aspect-ratio: auto; /* Adaptar ratio panorámico apilado */
+  /* Contenedores y Márgenes */
+  .container { padding: 0 1.5rem; }
+  .category-section, .about-section { padding: 4rem 0; }
+  .category-header { margin-bottom: 2.5rem; }
+  
+  /* Textos Escalonados */
+  .hero h1 { font-size: 3.5rem; letter-spacing: -1px; }
+  .hero-subtitle { font-size: 1.1rem; margin-bottom: 2rem; }
+  .category-header h2 { font-size: 2.5rem; }
+  .card-header-block h3, .card-content h3 { font-size: 1.6rem; }
+  
+  /* Navbar Minimalista */
+  .nav-links { display: none; }
+  
+  /* Botones Accesibles con el Pulgar */
+  .hero-actions { flex-direction: column; gap: 1rem; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  
+  /* Grilla de Proyectos */
+  .bento-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .bento-card { padding: 1.5rem; }
+  .card-content p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+  
+  /* Galería en Columna (Apilada) */
+  .product-gallery { 
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
+    margin-bottom: 1.5rem; 
   }
 }
