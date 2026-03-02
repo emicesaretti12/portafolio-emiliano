@@ -2,7 +2,7 @@ export const Hero = () => {
   return `
     <section class="hero" id="hero-section">
       <div class="reveal-mask">
-        <h1>Emiliano.</h1>
+        <h1>Emiliano Cesaretti.</h1>
       </div>
       <div class="reveal-mask">
         <h1><span class="gradient-text">Estudiante de ingenieria en Sistemas</span></h1>
