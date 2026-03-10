@@ -20,6 +20,13 @@ export const portfolioData = {
         descripcion: "Chatbot modular interactivo con diseño Bento Grid.",
         tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"],
         imagenes: ["https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-home_rbkiod.jpg", "https://res.cloudinary.com/dyt92aarw/image/upload/v1772115382/polar-2_g2mlqk.jpg"]
+      },
+      {
+        nombre: "Catalogo Eliceramica",
+        url: "https://eliceramica-catalogo.vercel.app",
+        descripcion: "Catalogo de piezas de ceramica para tienda local",
+        tecnologias: ["Vanilla JS", "CSS Grid", "Componentes"],
+        imagenes: ["https://res.cloudinary.com/di9j6zwyz/image/upload/v1773168840/Captura_de_pantalla_2026-03-10_155206_ghpzsy.jpg", "https://res.cloudinary.com/di9j6zwyz/image/upload/v1773168904/Captura_de_pantalla_2026-03-10_155328_alrozb.jpg"]
       }
     ]
   },
